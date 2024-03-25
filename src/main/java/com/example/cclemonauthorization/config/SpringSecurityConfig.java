@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -22,10 +23,19 @@ public class SpringSecurityConfig {
   @Bean
   public UserDetailsService userDetailsService() {
     InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-    manager.createUser(User.builder().username("user").password(passwordEncoder().encode("password")).roles("USER").build());
+    manager.createUser(
+        User.builder()
+            .username("user")
+            .password(passwordEncoder().encode("password"))
+            .roles("USER")
+            .build());
 
     manager.createUser(
-        User.builder().username("admin").password(passwordEncoder().encode("password")).roles("USER", "ADMIN").build());
+        User.builder()
+            .username("admin")
+            .password(passwordEncoder().encode("password"))
+            .roles("USER", "ADMIN")
+            .build());
 
     return manager;
   }
@@ -56,8 +66,7 @@ public class SpringSecurityConfig {
   @Bean
   public SecurityFilterChain formLoginFilterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
-        .formLogin(withDefaults());
-
+        .formLogin(withDefaults()).logout(withDefaults());
     return http.build();
   }
 }
