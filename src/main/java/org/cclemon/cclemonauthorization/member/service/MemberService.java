@@ -30,4 +30,11 @@ public class MemberService {
 
     }
 
+    public List<MemberEntity> findByQuery(MemberDTO dto) {
+
+        return memberRepository.findByQuery(dto.getFullName());
+
+    }
+
+
 }

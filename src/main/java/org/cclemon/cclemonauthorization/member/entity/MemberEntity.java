@@ -1,15 +1,12 @@
 package org.cclemon.cclemonauthorization.member.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
-import org.cclemon.cclemonauthorization.entity.BaseEntity;
-
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Entity
@@ -19,12 +16,13 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberEntity extends BaseEntity {
+public class MemberEntity {
     
 	/**
 	 * Desc:membership pk
 	 * Column Name:mem_num, Column Type:BIGINT UNSIGNED, Nullable:N
 	 */
+	@Id
     private String memNum ;
 	/**
 	 * Desc:first name

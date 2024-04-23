@@ -1,6 +1,7 @@
 package org.cclemon.cclemonauthorization.menu.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.cclemon.cclemonauthorization.app.entity.AppEntity;
 import org.cclemon.cclemonauthorization.entity.BaseEntity;
 
 @Entity
