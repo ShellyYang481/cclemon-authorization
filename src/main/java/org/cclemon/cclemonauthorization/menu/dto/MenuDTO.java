@@ -1,9 +1,9 @@
 package org.cclemon.cclemonauthorization.menu.dto;
 
+import lombok.Data;
 import org.cclemon.cclemonauthorization.menu.entity.MenuEntity;
-import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
+@Data
 public class MenuDTO extends MenuEntity {
     
 }

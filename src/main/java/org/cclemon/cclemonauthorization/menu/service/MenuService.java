@@ -20,13 +20,13 @@ public class MenuService {
 
     public List<MenuEntity> query(MenuDTO dto) {
 
-        MenuEntity entity = new MenuEntity();
+//        MenuEntity entity = new MenuEntity();
+//
+//        BeanUtils.copyProperties(dto, entity);
+//
+//        Specification<MenuEntity> spec = MenuSpecification.create(entity);
 
-        BeanUtils.copyProperties(dto, entity);
-
-        Specification<MenuEntity> spec = MenuSpecification.create(entity);
-
-        return menuRepository.findAll(spec);
+        return menuRepository.findAll();
 
     }
 

@@ -1,7 +1,7 @@
 package org.cclemon.cclemonauthorization.menu.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.cclemon.cclemonauthorization.app.entity.AppEntity;
-import org.cclemon.cclemonauthorization.entity.BaseEntity;
 
 @Entity
 @Data
@@ -19,12 +17,13 @@ import org.cclemon.cclemonauthorization.entity.BaseEntity;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MenuEntity extends BaseEntity {
+public class MenuEntity {
     
 	/**
 	 * Desc:
 	 * Column Name:menu_num, Column Type:BIGINT UNSIGNED, Nullable:N
 	 */
+	@Id
     private String menuNum ;
 	/**
 	 * Desc:
@@ -35,7 +34,7 @@ public class MenuEntity extends BaseEntity {
 	 * Desc:display order of the menu
 	 * Column Name:order, Column Type:INT, Nullable:N
 	 */
-    private BigDecimal order ;
+    private BigDecimal sortNum ;
 	/**
 	 * Desc:
 	 * Column Name:create_by, Column Type:BIGINT, Nullable:N
@@ -61,7 +60,7 @@ public class MenuEntity extends BaseEntity {
         MenuEntity entity = new MenuEntity();
         entity.setMenuNum("");
         entity.setMenuName("");
-        entity.setOrder(new BigDecimal(0));
+        entity.setSortNum(new BigDecimal(0));
         entity.setCreateBy(new BigDecimal(0));
         entity.setCreateAt("");
         entity.setUpdateBy(new BigDecimal(0));

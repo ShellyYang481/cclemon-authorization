@@ -21,9 +21,9 @@ public class MenuSpecification {
                 predicate = criteriaBuilder.and(predicate,
                         criteriaBuilder.equal(root.get("menuName"), filter.getMenuName()));
             }
-            if (filter.getOrder() != null) {
+            if (filter.getSortNum() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.equal(root.get("order"), filter.getOrder()));
+                        criteriaBuilder.equal(root.get("order"), filter.getSortNum()));
             }
             if (filter.getCreateBy() != null) {
                 predicate = criteriaBuilder.and(predicate,

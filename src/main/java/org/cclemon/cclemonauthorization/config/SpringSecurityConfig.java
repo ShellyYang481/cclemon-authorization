@@ -15,6 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -57,14 +60,10 @@ public class SpringSecurityConfig {
   @Bean
   @Order(1)
   public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
-    http
-        .securityMatcher("/admin/**")
+    http.securityMatcher("/admin/**")
         .authorizeHttpRequests(authorize -> authorize.anyRequest().hasRole("ADMIN"))
         .httpBasic(withDefaults())
         .exceptionHandling(h -> h.accessDeniedPage("/accessDenied.html"));
-
-
-
 
     return http.build();
   }
@@ -72,9 +71,21 @@ public class SpringSecurityConfig {
   @Bean
   public SecurityFilterChain formLoginFilterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll())
+        .cors((cors) -> cors.configurationSource(corsConfigurationSource()))
         .formLogin(withDefaults())
         .logout(withDefaults());
     return http.build();
   }
 
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration config = new CorsConfiguration();
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("*");
+    config.addAllowedOrigin("http://127.0.0.1:5173");
+    config.setAllowCredentials(true);
+    source.registerCorsConfiguration("/**", config);
+    return source;
+  }
 }
